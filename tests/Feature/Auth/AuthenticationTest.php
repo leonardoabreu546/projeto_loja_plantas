@@ -30,6 +30,20 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(route('dashboard', absolute: false));
     }
 
+    public function test_admin_can_authenticate_using_the_login_screen(): void
+    {
+        $this->seed();
+
+        $response = $this->post('/login', [
+            'email' => 'admin@lojadeplantas.pt',
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $this->assertTrue(auth()->user()->is_admin);
+        $response->assertRedirect(route('dashboard', absolute: false));
+    }
+
     public function test_users_can_not_authenticate_with_invalid_password(): void
     {
         $user = User::factory()->create();

@@ -8,6 +8,10 @@
             <a href="{{ route('contacto') }}" class="text-green-700 hover:text-green-900">Contacto</a>
 
             @auth
+                @if (Auth::user()->is_admin)
+                    <a href="{{ route('admin.categorias.index') }}" class="text-green-700 hover:text-green-900">Admin: Categorias</a>
+                    <a href="{{ route('admin.plantas.index') }}" class="text-green-700 hover:text-green-900">Admin: Plantas</a>
+                @endif
                 <a href="{{ route('dashboard') }}" class="text-green-700 hover:text-green-900">Dashboard</a>
                 <span class="text-gray-600">{{ Auth::user()->name }}</span>
                 <form method="POST" action="{{ route('logout') }}" class="inline">

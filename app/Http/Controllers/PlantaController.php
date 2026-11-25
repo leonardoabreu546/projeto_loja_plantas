@@ -50,4 +50,13 @@ class PlantaController extends Controller
 
         return view('plantas.show', compact('planta', 'destaque'));
     }
+
+    public function adminIndex(): View
+    {
+        $plantas = Planta::with('categoria')
+            ->orderBy('nome')
+            ->get();
+
+        return view('admin.plantas.index', compact('plantas'));
+    }
 }

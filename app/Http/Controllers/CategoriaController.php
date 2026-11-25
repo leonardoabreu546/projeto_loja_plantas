@@ -25,4 +25,13 @@ class CategoriaController extends Controller
 
         return view('categorias.show', compact('categoria', 'destaque'));
     }
+
+    public function adminIndex(): View
+    {
+        $categorias = Categoria::withCount('plantas')
+            ->orderBy('nome')
+            ->get();
+
+        return view('admin.categorias.index', compact('categorias'));
+    }
 }

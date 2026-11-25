@@ -21,4 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/categorias', [CategoriaController::class, 'adminIndex'])->name('categorias.index');
+    Route::get('/plantas', [PlantaController::class, 'adminIndex'])->name('plantas.index');
+});
+
 require __DIR__.'/auth.php';

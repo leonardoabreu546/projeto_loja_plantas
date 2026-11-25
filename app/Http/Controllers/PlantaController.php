@@ -38,14 +38,16 @@ class PlantaController extends Controller
             ->get();
 
         $categorias = Categoria::orderBy('nome')->get();
+        $destaque = Planta::inRandomOrder()->first();
 
-        return view('plantas.index', compact('plantas', 'categorias', 'ordenacaoSelecionada'));
+        return view('plantas.index', compact('plantas', 'categorias', 'ordenacaoSelecionada', 'destaque'));
     }
 
     public function show(Planta $planta): View
     {
         $planta->load('categoria');
+        $destaque = Planta::inRandomOrder()->first();
 
-        return view('plantas.show', compact('planta'));
+        return view('plantas.show', compact('planta', 'destaque'));
     }
 }

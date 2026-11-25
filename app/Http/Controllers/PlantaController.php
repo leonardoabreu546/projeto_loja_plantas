@@ -15,4 +15,11 @@ class PlantaController extends Controller
 
         return view('plantas.index', compact('plantas'));
     }
+
+    public function show(Planta $planta): View
+    {
+        $planta->load('categoria');
+
+        return view('plantas.show', compact('planta'));
+    }
 }

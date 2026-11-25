@@ -16,6 +16,9 @@
                     <h2 class="mt-2 text-lg font-semibold text-gray-900">{{ $planta->nome }}</h2>
                     <p class="mt-2 text-sm text-gray-600">{{ $planta->descricao }}</p>
                     <p class="mt-4 font-bold text-green-800">{{ number_format((float) $planta->preco, 2, ',', '.') }} €</p>
+                    <a href="{{ route('plantas.show', $planta) }}" class="mt-4 inline-block text-sm font-semibold text-green-700 hover:text-green-900">
+                        Ver detalhes →
+                    </a>
                 </div>
             </article>
         @empty

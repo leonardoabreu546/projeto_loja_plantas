@@ -15,4 +15,11 @@ class CategoriaController extends Controller
 
         return view('categorias.index', compact('categorias'));
     }
+
+    public function show(Categoria $categoria): View
+    {
+        $categoria->load('plantas');
+
+        return view('categorias.show', compact('categoria'));
+    }
 }

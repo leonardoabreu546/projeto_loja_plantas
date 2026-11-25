@@ -14,6 +14,9 @@
                 <p class="mt-5 text-sm font-medium text-green-700">
                     {{ $categoria->plantas_count }} {{ $categoria->plantas_count === 1 ? 'planta' : 'plantas' }}
                 </p>
+                <a href="{{ route('categorias.show', $categoria) }}" class="mt-4 inline-block text-sm font-semibold text-green-700 hover:text-green-900">
+                    Ver categoria →
+                </a>
             </article>
         @empty
             <p class="text-gray-600">Ainda não existem categorias disponíveis.</p>

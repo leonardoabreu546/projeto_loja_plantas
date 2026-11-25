@@ -15,6 +15,7 @@
                 <div class="flex gap-4 text-sm font-medium">
                     <a href="{{ route('plantas.index') }}" class="text-green-700 hover:text-green-900">Plantas</a>
                     <a href="{{ route('categorias.index') }}" class="text-green-700 hover:text-green-900">Categorias</a>
+                    <a href="{{ route('contacto') }}" class="text-green-700 hover:text-green-900">Contacto</a>
                 </div>
             </nav>
         </header>

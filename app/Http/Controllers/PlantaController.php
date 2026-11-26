@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Planta;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -58,5 +59,30 @@ class PlantaController extends Controller
             ->get();
 
         return view('admin.plantas.index', compact('plantas'));
+    }
+
+    public function create(): View
+    {
+        $categorias = Categoria::orderBy('nome')->get();
+
+        return view('admin.plantas.create', compact('categorias'));
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $validado = $request->validate([
+            'categoria_id' => ['required', 'exists:categorias,id'],
+            'nome' => ['required', 'string', 'min:2', 'max:100'],
+            'nome_cientifico' => ['required', 'string', 'min:2', 'max:100'],
+            'descricao' => ['nullable', 'string', 'max:1000'],
+            'preco' => ['required', 'numeric', 'min:0', 'max:9999.99'],
+            'stock' => ['required', 'integer', 'min:0', 'max:9999'],
+            'imagem_url' => ['required', 'url', 'max:255'],
+        ]);
+
+        Planta::create($validado);
+
+        return redirect()->route('admin.plantas.index')
+            ->with('sucesso', 'Planta criada com sucesso.');
     }
 }

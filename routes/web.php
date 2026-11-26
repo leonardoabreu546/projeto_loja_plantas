@@ -29,6 +29,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('/categorias/{categoria}', [CategoriaController::class, 'update'])->name('categorias.update');
     Route::delete('/categorias/{categoria}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
     Route::get('/plantas', [PlantaController::class, 'adminIndex'])->name('plantas.index');
+    Route::get('/plantas/criar', [PlantaController::class, 'create'])->name('plantas.create');
+    Route::post('/plantas', [PlantaController::class, 'store'])->name('plantas.store');
 });
 
 require __DIR__.'/auth.php';

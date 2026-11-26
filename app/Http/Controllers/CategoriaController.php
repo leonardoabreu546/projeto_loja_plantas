@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Planta;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoriaController extends Controller
@@ -33,5 +35,23 @@ class CategoriaController extends Controller
             ->get();
 
         return view('admin.categorias.index', compact('categorias'));
+    }
+
+    public function create(): View
+    {
+        return view('admin.categorias.create');
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $validado = $request->validate([
+            'nome' => ['required', 'string', 'min:2', 'max:50', 'unique:categorias,nome'],
+            'descricao' => ['nullable', 'string', 'max:500'],
+        ]);
+
+        Categoria::create($validado);
+
+        return redirect()->route('admin.categorias.index')
+            ->with('sucesso', 'Categoria criada com sucesso.');
     }
 }

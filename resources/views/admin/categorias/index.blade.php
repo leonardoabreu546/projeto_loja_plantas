@@ -6,7 +6,7 @@
             <p class="text-sm font-semibold uppercase tracking-wide text-green-600">Administração</p>
             <h1 class="mt-2 text-3xl font-bold text-green-950">Gestão de categorias</h1>
         </div>
-        <a href="#" class="rounded-lg bg-green-700 px-5 py-2 font-semibold text-white hover:bg-green-800">Nova categoria</a>
+        <a href="{{ route('admin.categorias.create') }}" class="rounded-lg bg-green-700 px-5 py-2 font-semibold text-white hover:bg-green-800">Nova categoria</a>
     </div>
 
     <div class="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-green-100">

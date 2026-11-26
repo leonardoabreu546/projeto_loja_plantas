@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/categorias', [CategoriaController::class, 'adminIndex'])->name('categorias.index');
+    Route::get('/categorias/criar', [CategoriaController::class, 'create'])->name('categorias.create');
+    Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
     Route::get('/plantas', [PlantaController::class, 'adminIndex'])->name('plantas.index');
 });
 

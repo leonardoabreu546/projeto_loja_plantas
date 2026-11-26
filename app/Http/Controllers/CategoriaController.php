@@ -54,4 +54,22 @@ class CategoriaController extends Controller
         return redirect()->route('admin.categorias.index')
             ->with('sucesso', 'Categoria criada com sucesso.');
     }
+
+    public function edit(Categoria $categoria): View
+    {
+        return view('admin.categorias.edit', compact('categoria'));
+    }
+
+    public function update(Request $request, Categoria $categoria): RedirectResponse
+    {
+        $validado = $request->validate([
+            'nome' => ['required', 'string', 'min:2', 'max:50', 'unique:categorias,nome,' . $categoria->id],
+            'descricao' => ['nullable', 'string', 'max:500'],
+        ]);
+
+        $categoria->update($validado);
+
+        return redirect()->route('admin.categorias.index')
+            ->with('sucesso', 'Categoria atualizada com sucesso.');
+    }
 }

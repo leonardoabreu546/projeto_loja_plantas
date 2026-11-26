@@ -25,6 +25,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/categorias', [CategoriaController::class, 'adminIndex'])->name('categorias.index');
     Route::get('/categorias/criar', [CategoriaController::class, 'create'])->name('categorias.create');
     Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+    Route::get('/categorias/{categoria}/editar', [CategoriaController::class, 'edit'])->name('categorias.edit');
+    Route::patch('/categorias/{categoria}', [CategoriaController::class, 'update'])->name('categorias.update');
     Route::get('/plantas', [PlantaController::class, 'adminIndex'])->name('plantas.index');
 });
 

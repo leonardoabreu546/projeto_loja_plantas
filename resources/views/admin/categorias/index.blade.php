@@ -27,7 +27,8 @@
                         <td class="px-6 py-4 text-gray-600 whitespace-nowrap">{{ $categoria->plantas_count }}</td>
                         <td class="px-6 py-4 align-middle whitespace-nowrap">
                             <div class="flex items-center justify-end gap-3">
-                                <span class="text-sm font-semibold text-green-700 hover:text-green-900 cursor-default">Editar</span>
+                                <a href="{{ route('admin.categorias.edit', $categoria) }}"
+                                   class="text-sm font-semibold text-green-700 hover:text-green-900">Editar</a>
                                 <span class="text-sm font-semibold text-red-700 hover:text-red-900 cursor-default">Eliminar</span>
                             </div>
                         </td>

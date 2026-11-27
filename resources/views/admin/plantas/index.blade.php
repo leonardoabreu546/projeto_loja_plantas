@@ -9,6 +9,20 @@
         <a href="{{ route('admin.plantas.create') }}" class="rounded-lg bg-green-700 px-5 py-2 font-semibold text-white hover:bg-green-800">Nova planta</a>
     </div>
 
+    @if (session('criada'))
+        <div id="flash-mensagem" class="mb-4 rounded-lg bg-green-100 border-2 border-green-500 p-6 text-green-900 text-lg font-semibold">
+            ✅ {{ session('criada') }}
+        </div>
+    @elseif (session('atualizada'))
+        <div id="flash-mensagem" class="mb-4 rounded-lg bg-blue-100 border-2 border-blue-500 p-6 text-blue-900 text-lg font-semibold">
+            🔄 {{ session('atualizada') }}
+        </div>
+    @elseif (session('eliminada'))
+        <div id="flash-mensagem" class="mb-4 rounded-lg bg-red-100 border-2 border-red-500 p-6 text-red-900 text-lg font-semibold">
+            🗑️ {{ session('eliminada') }}
+        </div>
+    @endif
+
     <div class="overflow-x-auto rounded-xl bg-white shadow-sm ring-1 ring-green-100">
         <table class="w-full divide-y divide-green-100">
             <thead class="bg-green-50">
@@ -60,4 +74,17 @@
             </tbody>
         </table>
     </div>
+
+    @if (session('criada') || session('atualizada') || session('eliminada'))
+        <script>
+            setTimeout(function () {
+                var el = document.getElementById('flash-mensagem');
+                if (el) {
+                    el.style.transition = 'opacity 0.5s';
+                    el.style.opacity = '0';
+                    setTimeout(function () { el.remove(); }, 500);
+                }
+            }, 3000);
+        </script>
+    @endif
 @endsection

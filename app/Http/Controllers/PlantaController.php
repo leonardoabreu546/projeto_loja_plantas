@@ -83,7 +83,7 @@ class PlantaController extends Controller
         Planta::create($validado);
 
         return redirect()->route('admin.plantas.index')
-            ->with('sucesso', 'Planta criada com sucesso.');
+            ->with('criada', 'Planta criada com sucesso.');
     }
 
     public function edit(Planta $planta): View
@@ -108,7 +108,7 @@ class PlantaController extends Controller
         $planta->update($validado);
 
         return redirect()->route('admin.plantas.index')
-            ->with('sucesso', 'Planta atualizada com sucesso.');
+            ->with('atualizada', 'Planta atualizada com sucesso.');
     }
 
     public function destroy(Planta $planta): RedirectResponse
@@ -116,6 +116,6 @@ class PlantaController extends Controller
         $planta->delete();
 
         return redirect()->route('admin.plantas.index')
-            ->with('sucesso', 'Planta eliminada com sucesso.');
+            ->with('eliminada', 'Planta eliminada com sucesso.');
     }
 }

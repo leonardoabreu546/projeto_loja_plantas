@@ -52,7 +52,7 @@ class CategoriaController extends Controller
         Categoria::create($validado);
 
         return redirect()->route('admin.categorias.index')
-            ->with('sucesso', 'Categoria criada com sucesso.');
+            ->with('criada', 'Categoria criada com sucesso.');
     }
 
     public function edit(Categoria $categoria): View
@@ -70,7 +70,7 @@ class CategoriaController extends Controller
         $categoria->update($validado);
 
         return redirect()->route('admin.categorias.index')
-            ->with('sucesso', 'Categoria atualizada com sucesso.');
+            ->with('atualizada', 'Categoria atualizada com sucesso.');
     }
 
     public function destroy(Categoria $categoria): RedirectResponse
@@ -78,6 +78,6 @@ class CategoriaController extends Controller
         $categoria->delete();
 
         return redirect()->route('admin.categorias.index')
-            ->with('sucesso', 'Categoria eliminada com sucesso.');
+            ->with('eliminada', 'Categoria eliminada com sucesso.');
     }
 }

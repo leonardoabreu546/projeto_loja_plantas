@@ -31,6 +31,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/plantas', [PlantaController::class, 'adminIndex'])->name('plantas.index');
     Route::get('/plantas/criar', [PlantaController::class, 'create'])->name('plantas.create');
     Route::post('/plantas', [PlantaController::class, 'store'])->name('plantas.store');
+    Route::get('/plantas/{planta}/editar', [PlantaController::class, 'edit'])->name('plantas.edit');
+    Route::patch('/plantas/{planta}', [PlantaController::class, 'update'])->name('plantas.update');
 });
 
 require __DIR__.'/auth.php';

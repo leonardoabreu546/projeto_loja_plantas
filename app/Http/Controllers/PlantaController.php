@@ -85,4 +85,29 @@ class PlantaController extends Controller
         return redirect()->route('admin.plantas.index')
             ->with('sucesso', 'Planta criada com sucesso.');
     }
+
+    public function edit(Planta $planta): View
+    {
+        $categorias = Categoria::orderBy('nome')->get();
+
+        return view('admin.plantas.edit', compact('planta', 'categorias'));
+    }
+
+    public function update(Request $request, Planta $planta): RedirectResponse
+    {
+        $validado = $request->validate([
+            'categoria_id' => ['required', 'exists:categorias,id'],
+            'nome' => ['required', 'string', 'min:2', 'max:100'],
+            'nome_cientifico' => ['required', 'string', 'min:2', 'max:100'],
+            'descricao' => ['nullable', 'string', 'max:1000'],
+            'preco' => ['required', 'numeric', 'min:0', 'max:9999.99'],
+            'stock' => ['required', 'integer', 'min:0', 'max:9999'],
+            'imagem_url' => ['required', 'url', 'max:255'],
+        ]);
+
+        $planta->update($validado);
+
+        return redirect()->route('admin.plantas.index')
+            ->with('sucesso', 'Planta atualizada com sucesso.');
+    }
 }

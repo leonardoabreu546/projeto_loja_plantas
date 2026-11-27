@@ -110,4 +110,12 @@ class PlantaController extends Controller
         return redirect()->route('admin.plantas.index')
             ->with('sucesso', 'Planta atualizada com sucesso.');
     }
+
+    public function destroy(Planta $planta): RedirectResponse
+    {
+        $planta->delete();
+
+        return redirect()->route('admin.plantas.index')
+            ->with('sucesso', 'Planta eliminada com sucesso.');
+    }
 }

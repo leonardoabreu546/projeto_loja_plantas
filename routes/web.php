@@ -33,6 +33,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/plantas', [PlantaController::class, 'store'])->name('plantas.store');
     Route::get('/plantas/{planta}/editar', [PlantaController::class, 'edit'])->name('plantas.edit');
     Route::patch('/plantas/{planta}', [PlantaController::class, 'update'])->name('plantas.update');
+    Route::delete('/plantas/{planta}', [PlantaController::class, 'destroy'])->name('plantas.destroy');
 });
 
 require __DIR__.'/auth.php';

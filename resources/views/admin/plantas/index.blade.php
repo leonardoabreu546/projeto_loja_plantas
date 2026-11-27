@@ -38,7 +38,15 @@
                             <div class="flex items-center justify-end gap-3">
                                 <a href="{{ route('admin.plantas.edit', $planta) }}"
                                    class="text-sm font-semibold text-green-700 hover:text-green-900">Editar</a>
-                                <span class="text-sm font-semibold text-red-700 hover:text-red-900 cursor-default">Eliminar</span>
+                                <form method="POST" action="{{ route('admin.plantas.destroy', $planta) }}"
+                                      onsubmit="return confirm('Tem a certeza que deseja eliminar esta planta?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                            class="text-sm font-semibold text-red-700 hover:text-red-900 bg-transparent border-0 p-0 cursor-pointer">
+                                        Eliminar
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>
